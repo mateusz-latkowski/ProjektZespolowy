@@ -1,3 +1,24 @@
 <resources>
-    <string name="app_name">ProjektZespolowy</string>
+    <string name="app_name">Projekt Zespolowy</string>
+
+    <string name="tytul">LOGOWANIE</string>
+
+    <!--    Main Activity - logowanie -->
+    <string name="editTextMail">E-mail</string>
+    <string name="editTextHaslo">Hasło</string>
+    <string name="buttonLogin">ZALOGUJ</string>
+    <string name="textViewRejestracja">Nie masz konta? Zarejestruj się!</string>
+    <string name="textViewPrzypomnienieHasla">Zapomniałeś hasła? Kliknij tutaj!</string>
+
+    <!--    Przypomneinie hasla -->
+    <string name="textViewInfo">Na podany przez Ciebie adres e-mail zostanie wysłany link z aktywacją nowego hasła!</string>
+    <string name="buttonReset">Wyślij</string>
+
+    <!--        Rejestracja -->
+    <string name="editTextImie">Imię</string>
+    <string name="editTextNazwisko">Nazwisko</string>
+    <string name="editTextNumerTelefonu">Numer telefonu</string>
+    <string name="buttonRejestracja">Zarejestruj</string>
+    <string name="textViewLogowanie">Jesteś zarejestrowany? Zaloguj się!</string>
+
 </resources>
