@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "832242395010",
+    "project_id": "projektzespolowy-d7006",
+    "storage_bucket": "projektzespolowy-d7006.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:832242395010:android:6b69b78a9b61315776519b",
+        "android_client_info": {
+          "package_name": "com.example.projektzespolowy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "832242395010-hkuq58i9chcrsrm458lokvnp2h1rk518.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.projektzespolowy",
+            "certificate_hash": "21aeb98deaab8d20a6219f3befb98ce1385d41fb"
+          }
+        },
+        {
+          "client_id": "832242395010-nf9mae8j2s93tp797rklgujj1lo9sj5b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDbHKq2qXxwOL25_2ZcuJjKjDoFvU3S0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "832242395010-nf9mae8j2s93tp797rklgujj1lo9sj5b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
