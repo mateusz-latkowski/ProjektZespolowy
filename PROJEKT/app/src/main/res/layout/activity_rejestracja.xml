@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Rejestracja">
+
+    <EditText
+        android:id="@+id/editTextMailRegistration"
+        android:layout_width="320dp"
+        android:layout_height="45dp"
+        android:background="@drawable/rounded_inputs"
+        android:hint="@string/editTextMail"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.228" />
+
+    <EditText
+        android:id="@+id/editTextPasswordRegistration"
+        android:layout_width="320dp"
+        android:layout_height="45dp"
+        android:background="@drawable/rounded_inputs"
+        android:hint="@string/editTextHaslo"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMailRegistration"
+        app:layout_constraintVertical_bias="0.045" />
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="320dp"
+        android:layout_height="45dp"
+        android:background="@drawable/rounded_inputs"
+        android:hint="@string/editTextImie"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRegistration"
+        app:layout_constraintVertical_bias="0.045" />
+
+    <EditText
+        android:id="@+id/editTextSurname"
+        android:layout_width="320dp"
+        android:layout_height="45dp"
+        android:background="@drawable/rounded_inputs"
+        android:hint="@string/editTextNazwisko"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextName"
+        app:layout_constraintVertical_bias="0.045" />
+
+    <EditText
+        android:id="@+id/editTextPhoneNumber"
+        android:layout_width="320dp"
+        android:layout_height="45dp"
+        android:background="@drawable/rounded_inputs"
+        android:hint="@string/editTextNumerTelefonu"
+        android:importantForAutofill="no"
+        android:inputType="phone"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSurname"
+        app:layout_constraintVertical_bias="0.045" />
+
+    <Button
+        android:id="@+id/buttonRegistration"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonRejestracja"
+        android:background="@drawable/rounded_buttons"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhoneNumber"
+        app:layout_constraintVertical_bias="0.081" />
+
+    <TextView
+        android:id="@+id/textViewSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/textViewLogowanie"
+        android:textSize="17sp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonRegistration"
+        app:layout_constraintVertical_bias="0.124"
+        tools:layout_editor_absoluteX="0dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
