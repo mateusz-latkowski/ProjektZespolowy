@@ -21,4 +21,29 @@
     <string name="buttonRejestracja">Zarejestruj</string>
     <string name="textViewLogowanie">Jesteś zarejestrowany? Zaloguj się!</string>
 
+    <!--    Admin Home -->
+    <string name="buttonDodawanieWycieczek">Dodaj wycieczkę</string>
+    <string name="buttonListaWycieczek">Wycieczki</string>
+    <string name="buttonListaUzytkownikow">Użytkownicy</string>
+    <string name="buttonLogOut">Wyloguj</string>
+
+    <!--    Dodawanie wycieczki -->
+    <string name="textViewDodawanieWycieczki">UTWÓRZ WYCIECZKĘ</string>
+    <string name="editTextMiejsce">Miejsce</string>
+    <string name="editTextCena">Cena</string>
+    <string name="editTextData">Data</string>
+    <string name="editTextOpis">Opis wycieczki</string>
+    <string name="buttonDodajZdjecie">Dodaj zdjęcie</string>
+    <string name="editTextPrzewodnik">Imię i nazwisko przewodnika</string>
+    <string name="buttonEnter">Zatwierdź</string>
+
+    <!--    Przeglad wycieczki -->
+    <string name="buttonEdycja">Edytuj wycieczkę</string>
+    <string name="buttonUsun">Usuń wycieczkę</string>
+    <string name="textViewKomunikat">Czy na pewno chcesz usunąć wycieczkę?</string>
+
+    <string name="textViewPrzewodnik">Przewodnik</string>
+    <string name="textViewBlokadaKonta">Blokada konta</string>
+    <string name="buttonZmianaHasla">Zmień hasło</string>
+
 </resources>
