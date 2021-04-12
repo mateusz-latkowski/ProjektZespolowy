@@ -83,6 +83,7 @@ public class Rejestracja extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             zapiszDaneUzytkownika();
+                            Toast.makeText(Rejestracja.this, "Użytkownik został zarejestrowany!", Toast.LENGTH_SHORT).show();
                             finish();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else {
@@ -105,9 +106,12 @@ public class Rejestracja extends AppCompatActivity {
         String nazwisko = editTextNazwisko.getText().toString().trim();
         String telefon = editTextTelefon.getText().toString().trim();
 
-        databaseReference.child(userID).child("E-mail").setValue(email);
         databaseReference.child(userID).child("Imie").setValue(imie);
         databaseReference.child(userID).child("Nazwisko").setValue(nazwisko);
         databaseReference.child(userID).child("Telefon").setValue(telefon);
+        databaseReference.child(userID).child("Email").setValue(email);
+        databaseReference.child(userID).child("Przewodnik").setValue("NIE");
+        databaseReference.child(userID).child("Blokada").setValue("NIE");
+        databaseReference.child(userID).child("ID").setValue(userID);
     }
 }
