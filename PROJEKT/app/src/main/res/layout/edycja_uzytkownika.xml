@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textViewStatusPrzewodnika"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textSize="20sp"
+            android:text="@string/textViewPrzewodnik" />
+
+        <Switch
+            android:id="@+id/switchStatusPrzewodnika"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:checked="false"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textViewStatusKonta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textSize="20sp"
+            android:text="@string/textViewBlokadaKonta" />
+
+        <Switch
+            android:id="@+id/switchStatusKonta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:checked="false"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/buttonZmianaHasla"
+        android:layout_width="200dp"
+        android:background="@drawable/rounded_buttons"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:text="@string/buttonZmianaHasla" />
+
+
+</LinearLayout>
