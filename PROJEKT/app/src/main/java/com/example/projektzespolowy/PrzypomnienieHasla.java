@@ -44,7 +44,7 @@ public class PrzypomnienieHasla extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(PrzypomnienieHasla.this, "Link aktywacyjny został wysłany. Sprawdź swój e-mail!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(PrzypomnienieHasla.this, "Link do zmiany hasła został wysłany!", Toast.LENGTH_LONG).show();
                                 finish();
                                 startActivity(new Intent(PrzypomnienieHasla.this, MainActivity.class));
                             }
