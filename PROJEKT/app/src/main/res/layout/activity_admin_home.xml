@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminHome">
+
+
+    <TextView
+        android:id="@+id/textViewDataGodzina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03" />
+
+    <Button
+        android:id="@+id/buttonDodaj"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonDodawanieWycieczek"
+        android:background="@drawable/rounded_buttons"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDataGodzina"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <Button
+        android:id="@+id/buttonListaWycieczek"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonListaWycieczek"
+        android:background="@drawable/rounded_buttons"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDodaj"
+        app:layout_constraintVertical_bias="0.050" />
+
+    <Button
+        android:id="@+id/buttonUzytkownicy"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonListaUzytkownikow"
+        android:background="@drawable/rounded_buttons"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonListaWycieczek"
+        app:layout_constraintVertical_bias="0.050" />
+
+    <Button
+        android:id="@+id/buttonWyloguj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonLogOut"
+        android:background="@drawable/rounded_buttons"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonUzytkownicy"
+        app:layout_constraintVertical_bias="0.25" />
+</androidx.constraintlayout.widget.ConstraintLayout>
