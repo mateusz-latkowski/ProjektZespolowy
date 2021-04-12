@@ -80,11 +80,17 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             finish();
-//                            startActivity(new Intent(getApplicationContext(), Home.class));
+                            rolaUzytkownika(email);
                         } else {
                             Toast.makeText(MainActivity.this, "Niepoprawny adres e-mail lub hasło, spróbuj ponownie!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+    }
+
+    private void rolaUzytkownika(String email) {
+        if (email.contains("admin@admin.com")) {
+            startActivity(new Intent(this, AdminHome.class));
+        }
     }
 }
