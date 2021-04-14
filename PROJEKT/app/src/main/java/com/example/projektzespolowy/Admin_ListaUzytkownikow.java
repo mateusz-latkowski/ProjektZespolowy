@@ -31,7 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
-public class Uzytkownicy extends AppCompatActivity {
+public class Admin_ListaUzytkownikow extends AppCompatActivity {
 
     private Button haslo;
 
@@ -42,7 +42,7 @@ public class Uzytkownicy extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_uzytkownicy);
+        setContentView(R.layout.activity_admin_uzytkownicy);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         ListView listView = findViewById(R.id.listViewListaUzytkownikow);
@@ -50,7 +50,7 @@ public class Uzytkownicy extends AppCompatActivity {
 
         Query query = FirebaseDatabase.getInstance().getReference().child("Uzytkownicy");
         FirebaseListOptions<UzytkownikInfo> uzytkownik = new FirebaseListOptions.Builder<UzytkownikInfo>()
-                .setLayout(R.layout.activity_uzytkownicy_element)
+                .setLayout(R.layout.uzytkownik_element)
                 .setLifecycleOwner(this)
                 .setQuery(query, UzytkownikInfo.class)
                 .build();
@@ -91,9 +91,9 @@ public class Uzytkownicy extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Uzytkownicy.this);
-                LayoutInflater inflater = Uzytkownicy.this.getLayoutInflater();
-                View view = inflater.inflate(R.layout.edycja_uzytkownika, null);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Admin_ListaUzytkownikow.this);
+                LayoutInflater inflater = Admin_ListaUzytkownikow.this.getLayoutInflater();
+                View view = inflater.inflate(R.layout.uzytkownik_edycja, null);
 
                 @SuppressLint("UseSwitchCompatOrMaterialCode") Switch przewodnik = view.findViewById(R.id.switchStatusPrzewodnika);
                 @SuppressLint("UseSwitchCompatOrMaterialCode") Switch blokada = view.findViewById(R.id.switchStatusKonta);
@@ -127,7 +127,7 @@ public class Uzytkownicy extends AppCompatActivity {
                         .setPositiveButton("ZATWIERDŹ", (dialog, which) -> {
                             databaseReference.child("Przewodnik").setValue(przewodnik_status);
                             databaseReference.child("Blokada").setValue(blokada_status);
-                            Toast.makeText(Uzytkownicy.this, "Zmiany zostały zapisane!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Admin_ListaUzytkownikow.this, "Zmiany zostały zapisane!", Toast.LENGTH_SHORT).show();
                             dialog.cancel();
                         });
 
@@ -147,7 +147,7 @@ public class Uzytkownicy extends AppCompatActivity {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                Toast.makeText(Uzytkownicy.this, "Link został wysłany!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Admin_ListaUzytkownikow.this, "Link został wysłany!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -157,7 +157,7 @@ public class Uzytkownicy extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-                startActivity(new Intent(Uzytkownicy.this, AdminHome.class));
+                startActivity(new Intent(Admin_ListaUzytkownikow.this, Admin_MAIN.class));
                 return true;
         }
         return super.onOptionsItemSelected(item);

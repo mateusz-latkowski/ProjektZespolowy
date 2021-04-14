@@ -13,12 +13,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class AdminHome extends AppCompatActivity {
+public class Admin_MAIN extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_home);
+        setContentView(R.layout.activity_admin_main);
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
@@ -33,17 +33,17 @@ public class AdminHome extends AppCompatActivity {
 
         DodajWycieczke.setOnClickListener(v -> {
             finish();
-            startActivity(new Intent(getApplicationContext(), DodawanieWycieczek.class));
+            startActivity(new Intent(getApplicationContext(), Admin_DodawanieWycieczek.class));
         });
 
         ListaWwycieczek.setOnClickListener(v -> {
             finish();
-            startActivity(new Intent(getApplicationContext(), Wycieczki.class));
+            startActivity(new Intent(getApplicationContext(), Admin_ListaWycieczek.class));
         });
 
         ListaUzytkownikow.setOnClickListener(v -> {
             finish();
-            startActivity(new Intent(getApplicationContext(), Uzytkownicy.class));
+            startActivity(new Intent(getApplicationContext(), Admin_ListaUzytkownikow.class));
         });
 
         Wyloguj.setOnClickListener(v -> {

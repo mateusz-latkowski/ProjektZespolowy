@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 
-public class DodawanieWycieczek extends AppCompatActivity {
+public class Admin_DodawanieWycieczek extends AppCompatActivity {
 
     private EditText Miejsce;
     private EditText Cena;
@@ -45,7 +45,7 @@ public class DodawanieWycieczek extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dodawanie_wycieczek);
+        setContentView(R.layout.activity_admin_dodawanie_wycieczek);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         Miejsce = findViewById(R.id.editTextMiejsce);
@@ -62,7 +62,7 @@ public class DodawanieWycieczek extends AppCompatActivity {
 
         Zatwierdz.setOnClickListener(v -> {
             if (TextUtils.isEmpty(Miejsce.getText().toString().trim()) || TextUtils.isEmpty(Cena.getText().toString().trim()) || TextUtils.isEmpty(Data.getText().toString().trim()) || TextUtils.isEmpty(Opis.getText().toString().trim()) || TextUtils.isEmpty(Przewodnik.getText().toString().trim())) {
-                Toast.makeText(DodawanieWycieczek.this, "Pola nie moga byc puste!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Admin_DodawanieWycieczek.this, "Pola nie moga byc puste!", Toast.LENGTH_SHORT).show();
             } else {
                 zapiszWyczieczke();
             }
@@ -112,7 +112,7 @@ public class DodawanieWycieczek extends AppCompatActivity {
 
         Toast.makeText(this, "Wycieczka zostala zapisana!", Toast.LENGTH_SHORT).show();
         finish();
-        startActivity(new Intent(getApplicationContext(), AdminHome.class));
+        startActivity(new Intent(getApplicationContext(), Admin_MAIN.class));
     }
 
     private Object getExtension(Uri uri) {
@@ -140,7 +140,7 @@ public class DodawanieWycieczek extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-                startActivity(new Intent(DodawanieWycieczek.this, AdminHome.class));
+                startActivity(new Intent(Admin_DodawanieWycieczek.this, Admin_MAIN.class));
                 return true;
         }
         return super.onOptionsItemSelected(item);

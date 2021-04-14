@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     private void rolaUzytkownika(String email, String ID) {
         if (email.contains("admin@admin.com")) {
             finish();
-            startActivity(new Intent(this, AdminHome.class));
+            startActivity(new Intent(this, Admin_MAIN.class));
         } else {
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Uzytkownicy");
             databaseReference.addValueEventListener(new ValueEventListener() {
@@ -92,10 +92,10 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         if (Objects.requireNonNull(snapshot.child(ID).child("Przewodnik").getValue()).toString().contains("TAK")) {
                             finish();
-                            startActivity(new Intent(MainActivity.this, PrzewodnikHome.class));
+                            startActivity(new Intent(MainActivity.this, Przewodnik_MAIN.class));
                         } else {
                             finish();
-                            startActivity(new Intent(MainActivity.this, UzytkownikHome.class));
+                            startActivity(new Intent(MainActivity.this, Uzytkownik_MAIN.class));
                         }
                     }
                 }

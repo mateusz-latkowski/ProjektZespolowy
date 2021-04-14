@@ -5,11 +5,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +28,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.Objects;
 
-public class PrzegladWycieczki extends AppCompatActivity {
+public class Admin_PrzegladWycieczki extends AppCompatActivity {
 
     private TextView miejsce;
     private TextView data;
@@ -52,7 +48,7 @@ public class PrzegladWycieczki extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_przeglad_wycieczki);
+        setContentView(R.layout.activity_admin_przeglad_wycieczki);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         String ID = getIntent().getExtras().get("ID").toString();
@@ -94,7 +90,7 @@ public class PrzegladWycieczki extends AppCompatActivity {
     private void edytujWycieczke(final DatabaseReference reference) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
-        View view = inflater.inflate(R.layout.edycja_wycieczki, null);
+        View view = inflater.inflate(R.layout.wycieczka_edycja, null);
 
         edycjaCena = view.findViewById(R.id.editTextEdycjaCena);
         edycjaData = view.findViewById(R.id.editTextEdycjaData);
@@ -121,7 +117,7 @@ public class PrzegladWycieczki extends AppCompatActivity {
                     reference.child("Cena").setValue(edycjaCena.getText().toString().trim());
                     reference.child("Data").setValue(edycjaData.getText().toString().trim());
                     reference.child("Przewodnik").setValue(edycjaPrzewodnik.getText().toString().trim());
-                    Toast.makeText(PrzegladWycieczki.this, "Zmiany zostały zapisane!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Admin_PrzegladWycieczki.this, "Zmiany zostały zapisane!", Toast.LENGTH_SHORT).show();
                 });
 
         builder.create().show();
@@ -131,7 +127,7 @@ public class PrzegladWycieczki extends AppCompatActivity {
     private void usunWycieczke(DatabaseReference reference) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
-        View view = inflater.inflate(R.layout.usuwanie_wycieczki, null);
+        View view = inflater.inflate(R.layout.wycieczka_usuniecie, null);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -155,7 +151,7 @@ public class PrzegladWycieczki extends AppCompatActivity {
             storageReference.delete().addOnSuccessListener(aVoid -> {
                 finish();
                 reference.removeValue();
-                startActivity(new Intent(getApplicationContext(), Wycieczki.class));
+                startActivity(new Intent(getApplicationContext(), Admin_ListaWycieczek.class));
             });
         });
 
@@ -167,7 +163,7 @@ public class PrzegladWycieczki extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-                startActivity(new Intent(PrzegladWycieczki.this, Wycieczki.class));
+                startActivity(new Intent(Admin_PrzegladWycieczki.this, Admin_ListaWycieczek.class));
                 return true;
         }
         return super.onOptionsItemSelected(item);

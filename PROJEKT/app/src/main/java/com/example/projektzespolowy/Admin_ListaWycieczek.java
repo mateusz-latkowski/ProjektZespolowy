@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,19 +21,19 @@ import com.google.firebase.database.Query;
 
 import java.util.Objects;
 
-public class Wycieczki extends AppCompatActivity {
+public class Admin_ListaWycieczek extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wycieczki);
+        setContentView(R.layout.activity_admin_lista_wycieczek);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         ListView listView = findViewById(R.id.listViewListaWycieczek);
 
         Query query = FirebaseDatabase.getInstance().getReference().child("Wycieczki");
         FirebaseListOptions<WycieczkaInfo> wycieczka = new FirebaseListOptions.Builder<WycieczkaInfo>()
-                .setLayout(R.layout.activity_wycieczki_element)
+                .setLayout(R.layout.wycieczka_element)
                 .setLifecycleOwner(this)
                 .setQuery(query, WycieczkaInfo.class)
                 .build();
@@ -60,7 +59,7 @@ public class Wycieczki extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener((parent, view, position, id) -> {
-            Intent wycieczka1 = new Intent(Wycieczki.this, PrzegladWycieczki.class);
+            Intent wycieczka1 = new Intent(Admin_ListaWycieczek.this, Admin_PrzegladWycieczki.class);
             WycieczkaInfo wycieczkaInfo = (WycieczkaInfo) parent.getItemAtPosition(position);
             wycieczka1.putExtra("ID", wycieczkaInfo.getID());
             startActivity(wycieczka1);
@@ -72,7 +71,7 @@ public class Wycieczki extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
-                startActivity(new Intent(Wycieczki.this, AdminHome.class));
+                startActivity(new Intent(Admin_ListaWycieczek.this, Admin_MAIN.class));
                 return true;
         }
         return super.onOptionsItemSelected(item);
