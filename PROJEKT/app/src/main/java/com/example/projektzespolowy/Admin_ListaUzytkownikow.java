@@ -130,9 +130,7 @@ public class Admin_ListaUzytkownikow extends AppCompatActivity {
                             Toast.makeText(Admin_ListaUzytkownikow.this, "Zmiany zostały zapisane!", Toast.LENGTH_SHORT).show();
                             dialog.cancel();
                         });
-
-                final AlertDialog alert = builder.create();
-                alert.show();
+                builder.create().show();
 
                 haslo.setOnClickListener(v -> zmianaHasla(uzytkownik.getEmail()));
              }
