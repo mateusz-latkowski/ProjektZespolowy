@@ -6,57 +6,50 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText editTextEmail, editTextHaslo;
-    private Button buttonZaloguj;
-    private TextView textViewRejestracja, textViewPrzypomnienieHasla;
+    private EditText editTextEmail;
+    private EditText editTextHaslo;
 
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+//        if (firebaseAuth.getCurrentUser() != null) {
+//            logowanie();
+//        }
+
         editTextEmail = findViewById(R.id.editTextEmailLogin);
         editTextHaslo = findViewById(R.id.editTextPasswordLogin);
-        buttonZaloguj = findViewById(R.id.buttonSignIn);
-        textViewRejestracja = findViewById(R.id.textViewSignIn);
-        textViewPrzypomnienieHasla = findViewById(R.id.textViewRecoveryPass);
+        Button buttonZaloguj = findViewById(R.id.buttonSignIn);
+        TextView textViewRejestracja = findViewById(R.id.textViewSignIn);
+        TextView textViewPrzypomnienieHasla = findViewById(R.id.textViewRecoveryPass);
 
-        buttonZaloguj.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logowanie();
-            }
-        });
+        buttonZaloguj.setOnClickListener(v -> logowanie());
 
-        textViewRejestracja.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Rejestracja.class));
-            }
-        });
+        textViewRejestracja.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), Rejestracja.class)));
 
-        textViewPrzypomnienieHasla.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), PrzypomnienieHasla.class));
-            }
-        });
-
+        textViewPrzypomnienieHasla.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), PrzypomnienieHasla.class)));
     }
 
 
@@ -75,22 +68,41 @@ public class MainActivity extends AppCompatActivity {
         }
 
         firebaseAuth.signInWithEmailAndPassword(email, haslo)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            finish();
-                            rolaUzytkownika(email);
-                        } else {
-                            Toast.makeText(MainActivity.this, "Niepoprawny adres e-mail lub hasło, spróbuj ponownie!", Toast.LENGTH_SHORT).show();
-                        }
+                .addOnCompleteListener(MainActivity.this, task -> {
+                    if (task.isSuccessful()) {
+                        rolaUzytkownika(email, Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid());
+                    } else {
+                        Toast.makeText(MainActivity.this, "Niepoprawny adres e-mail lub hasło, spróbuj ponownie!", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
-    private void rolaUzytkownika(String email) {
+    private void rolaUzytkownika(String email, String ID) {
         if (email.contains("admin@admin.com")) {
+            finish();
             startActivity(new Intent(this, AdminHome.class));
+        } else {
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Uzytkownicy");
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (Objects.requireNonNull(snapshot.child(ID).child("Blokada").getValue()).toString().contains("TAK")) {
+                        firebaseAuth.signOut();
+                        Toast.makeText(MainActivity.this, "Twoje konto jest zablokowane!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        if (Objects.requireNonNull(snapshot.child(ID).child("Przewodnik").getValue()).toString().contains("TAK")) {
+                            finish();
+                            startActivity(new Intent(MainActivity.this, PrzewodnikHome.class));
+                        } else {
+                            finish();
+                            startActivity(new Intent(MainActivity.this, UzytkownikHome.class));
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {}
+            });
         }
     }
 }

@@ -113,5 +113,6 @@ public class Rejestracja extends AppCompatActivity {
         databaseReference.child(userID).child("Przewodnik").setValue("NIE");
         databaseReference.child(userID).child("Blokada").setValue("NIE");
         databaseReference.child(userID).child("ID").setValue(userID);
+        databaseReference.child(userID).child("Stan konta").setValue("0");
     }
 }

@@ -11,6 +11,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +30,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.Objects;
+
 public class PrzegladWycieczki extends AppCompatActivity {
 
     private TextView miejsce;
@@ -36,8 +40,6 @@ public class PrzegladWycieczki extends AppCompatActivity {
     private TextView przewodnik;
     private TextView opis;
     private ImageView zdjecie;
-    private Button edycja;
-    private Button usuwanie;
 
     private EditText edycjaCena;
     private EditText edycjaData;
@@ -51,6 +53,7 @@ public class PrzegladWycieczki extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_przeglad_wycieczki);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         String ID = getIntent().getExtras().get("ID").toString();
 
@@ -60,21 +63,21 @@ public class PrzegladWycieczki extends AppCompatActivity {
         przewodnik = findViewById(R.id.textViewPrzegladPrzewodnik);
         opis = findViewById(R.id.textViewPrzegladOpis);
         zdjecie = findViewById(R.id.imageViewPrzegladZdjecie);
-        edycja = findViewById(R.id.buttonEdytuj);
-        usuwanie = findViewById(R.id.buttonUsun);
+        Button edycja = findViewById(R.id.buttonEdytuj);
+        Button usuwanie = findViewById(R.id.buttonUsun);
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Wycieczki").child(ID);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                miejsce.setText("Miejsce: " + snapshot.child("Miejsce").getValue().toString());
-                data.setText("Data: " + snapshot.child("Data").getValue().toString());
-                cena.setText("Cena: " + snapshot.child("Cena").getValue().toString() + " zl");
-                przewodnik.setText("Przewodnik: " + snapshot.child("Przewodnik").getValue().toString());
-                opis.setText("Opis: \n" + snapshot.child("Opis").getValue().toString());
+                miejsce.setText("Miejsce: " + Objects.requireNonNull(snapshot.child("Miejsce").getValue()).toString());
+                data.setText("Data: " + Objects.requireNonNull(snapshot.child("Data").getValue()).toString());
+                cena.setText("Cena: " + Objects.requireNonNull(snapshot.child("Cena").getValue()).toString() + " zl");
+                przewodnik.setText("Przewodnik: " + Objects.requireNonNull(snapshot.child("Przewodnik").getValue()).toString());
+                opis.setText("Opis: \n" + Objects.requireNonNull(snapshot.child("Opis").getValue()).toString());
 
-                Glide.with(getApplicationContext()).load(snapshot.child("URL").getValue().toString()).into(zdjecie);
+                Glide.with(getApplicationContext()).load(Objects.requireNonNull(snapshot.child("URL").getValue()).toString()).into(zdjecie);
             }
 
             @Override
@@ -83,19 +86,9 @@ public class PrzegladWycieczki extends AppCompatActivity {
             }
         });
 
-        edycja.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                edytujWycieczke(databaseReference);
-            }
-        });
+        edycja.setOnClickListener(v -> edytujWycieczke(databaseReference));
 
-        usuwanie.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                usunWycieczke(databaseReference);
-            }
-        });
+        usuwanie.setOnClickListener(v -> usunWycieczke(databaseReference));
     }
 
     private void edytujWycieczke(final DatabaseReference reference) {
@@ -110,9 +103,9 @@ public class PrzegladWycieczki extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                edycjaCena.setText(snapshot.child("Cena").getValue().toString());
-                edycjaData.setText(snapshot.child("Data").getValue().toString());
-                edycjaPrzewodnik.setText(snapshot.child("Przewodnik").getValue().toString());
+                edycjaCena.setText(Objects.requireNonNull(snapshot.child("Cena").getValue()).toString());
+                edycjaData.setText(Objects.requireNonNull(snapshot.child("Data").getValue()).toString());
+                edycjaPrzewodnik.setText(Objects.requireNonNull(snapshot.child("Przewodnik").getValue()).toString());
             }
 
             @Override
@@ -123,20 +116,12 @@ public class PrzegladWycieczki extends AppCompatActivity {
 
         builder.setView(view)
                 .setTitle("Edytuj wycieczkę")
-                .setNegativeButton("ANULUJ", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                })
-                .setPositiveButton("ZATWIERDŹ", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        reference.child("Cena").setValue(edycjaCena.getText().toString().trim());
-                        reference.child("Data").setValue(edycjaData.getText().toString().trim());
-                        reference.child("Przewodnik").setValue(edycjaPrzewodnik.getText().toString().trim());
-                        Toast.makeText(PrzegladWycieczki.this, "Zmiany zostały zapisane!", Toast.LENGTH_SHORT).show();
-                    }
+                .setNegativeButton("ANULUJ", (dialog, which) -> dialog.cancel())
+                .setPositiveButton("ZATWIERDŹ", (dialog, which) -> {
+                    reference.child("Cena").setValue(edycjaCena.getText().toString().trim());
+                    reference.child("Data").setValue(edycjaData.getText().toString().trim());
+                    reference.child("Przewodnik").setValue(edycjaPrzewodnik.getText().toString().trim());
+                    Toast.makeText(PrzegladWycieczki.this, "Zmiany zostały zapisane!", Toast.LENGTH_SHORT).show();
                 });
 
         builder.create().show();
@@ -151,7 +136,7 @@ public class PrzegladWycieczki extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                url = snapshot.child("URL").getValue().toString();
+                url = Objects.requireNonNull(snapshot.child("URL").getValue()).toString();
             }
 
             @Override
@@ -160,31 +145,35 @@ public class PrzegladWycieczki extends AppCompatActivity {
             }
         });
 
-        builder.setView(view)
-                .setTitle("Usuń wycieczkę")
-                .setNegativeButton("ANULUJ", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                })
-                .setPositiveButton("ZATWIERDŹ", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
-                        StorageReference storageReference = firebaseStorage.getReferenceFromUrl(url);
+        builder.setView(view);
+        builder.setTitle("Usuń wycieczkę");
+        builder.setNegativeButton("ANULUJ", (dialog, which) -> dialog.cancel());
+        builder.setPositiveButton("ZATWIERDŹ", (dialog, which) -> {
+            FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+            StorageReference storageReference = firebaseStorage.getReferenceFromUrl(url);
 
-                        storageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                finish();
-                                reference.removeValue();
-                                startActivity(new Intent(getApplicationContext(), Wycieczki.class));
-                            }
-                        });
-                    }
-                });
+            storageReference.delete().addOnSuccessListener(aVoid -> {
+                finish();
+                reference.removeValue();
+                startActivity(new Intent(getApplicationContext(), Wycieczki.class));
+            });
+        });
 
         builder.create().show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                startActivity(new Intent(PrzegladWycieczki.this, Wycieczki.class));
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public boolean OnCreateOptionsMenu(Menu menu) {
+        return true;
     }
 }

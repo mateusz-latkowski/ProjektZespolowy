@@ -1,15 +1,17 @@
 package com.example.projektzespolowy;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -18,17 +20,17 @@ import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-public class Wycieczki extends AppCompatActivity {
+import java.util.Objects;
 
-    private ListView listView;
-    private FirebaseListAdapter adapter;
+public class Wycieczki extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wycieczki);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        listView = findViewById(R.id.listViewListaWycieczek);
+        ListView listView = findViewById(R.id.listViewListaWycieczek);
 
         Query query = FirebaseDatabase.getInstance().getReference().child("Wycieczki");
         FirebaseListOptions<WycieczkaInfo> wycieczka = new FirebaseListOptions.Builder<WycieczkaInfo>()
@@ -37,7 +39,7 @@ public class Wycieczki extends AppCompatActivity {
                 .setQuery(query, WycieczkaInfo.class)
                 .build();
 
-        adapter = new FirebaseListAdapter(wycieczka) {
+        FirebaseListAdapter adapter = new FirebaseListAdapter(wycieczka) {
             @SuppressLint("SetTextI18n")
             @Override
             protected void populateView(View v, Object model, int position) {
@@ -57,14 +59,26 @@ public class Wycieczki extends AppCompatActivity {
         };
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent wycieczka = new Intent(Wycieczki.this, PrzegladWycieczki.class);
-                WycieczkaInfo wycieczkaInfo = (WycieczkaInfo) parent.getItemAtPosition(position);
-                wycieczka.putExtra("ID", wycieczkaInfo.getID());
-                startActivity(wycieczka);
-            }
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            Intent wycieczka1 = new Intent(Wycieczki.this, PrzegladWycieczki.class);
+            WycieczkaInfo wycieczkaInfo = (WycieczkaInfo) parent.getItemAtPosition(position);
+            wycieczka1.putExtra("ID", wycieczkaInfo.getID());
+            startActivity(wycieczka1);
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                startActivity(new Intent(Wycieczki.this, AdminHome.class));
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public boolean OnCreateOptionsMenu(Menu menu) {
+        return true;
     }
 }
