@@ -7,16 +7,18 @@ public class WycieczkaInfo {
     private String Data;
     private String URL;
     private String ID;
+    private String Przewodnik;
 
     public WycieczkaInfo() {
     }
 
-    public WycieczkaInfo(String miejsce, String cena, String data, String url, String id) {
+    public WycieczkaInfo(String miejsce, String cena, String data, String url, String id, String przewodnik) {
         Miejsce = miejsce;
         Cena = cena;
         Data = data;
         URL = url;
         ID = id;
+        Przewodnik = przewodnik;
     }
 
     public String getMiejsce() {
@@ -57,5 +59,13 @@ public class WycieczkaInfo {
 
     public void setID(String ID) {
         this.ID = ID;
+    }
+
+    public String getPrzewodnik() {
+        return Przewodnik;
+    }
+
+    public void setPrzewodnik(String przewodnik) {
+        Przewodnik = przewodnik;
     }
 }
