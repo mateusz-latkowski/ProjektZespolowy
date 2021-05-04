@@ -70,8 +70,8 @@ public class Admin_ListaWycieczek extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
                 startActivity(new Intent(Admin_ListaWycieczek.this, Admin_MAIN.class));
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);

@@ -32,24 +32,24 @@ public class Admin_MAIN extends AppCompatActivity {
         DataGodzina.setText(currentTime);
 
         DodajWycieczke.setOnClickListener(v -> {
-            finish();
             startActivity(new Intent(getApplicationContext(), Admin_DodawanieWycieczek.class));
+            finish();
         });
 
         ListaWwycieczek.setOnClickListener(v -> {
-            finish();
             startActivity(new Intent(getApplicationContext(), Admin_ListaWycieczek.class));
+            finish();
         });
 
         ListaUzytkownikow.setOnClickListener(v -> {
-            finish();
             startActivity(new Intent(getApplicationContext(), Admin_ListaUzytkownikow.class));
+            finish();
         });
 
         Wyloguj.setOnClickListener(v -> {
             firebaseAuth.signOut();
-            finish();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
         });
     }
 }

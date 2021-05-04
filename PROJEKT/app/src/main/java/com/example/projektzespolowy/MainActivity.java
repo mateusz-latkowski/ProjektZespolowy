@@ -35,9 +35,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         firebaseAuth = FirebaseAuth.getInstance();
-//        if (firebaseAuth.getCurrentUser() != null) {
-//            logowanie();
-//        }
 
         editTextEmail = findViewById(R.id.editTextEmailLogin);
         editTextHaslo = findViewById(R.id.editTextPasswordLogin);
@@ -79,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void rolaUzytkownika(String email, String ID) {
         if (email.contains("admin@admin.com")) {
-            finish();
             startActivity(new Intent(this, Admin_MAIN.class));
+            finish();
         } else {
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Uzytkownicy");
             databaseReference.addValueEventListener(new ValueEventListener() {
@@ -91,11 +88,11 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Twoje konto jest zablokowane!", Toast.LENGTH_SHORT).show();
                     } else {
                         if (Objects.requireNonNull(snapshot.child(ID).child("Przewodnik").getValue()).toString().contains("TAK")) {
-                            finish();
                             startActivity(new Intent(MainActivity.this, Przewodnik_MAIN.class));
-                        } else {
                             finish();
+                        } else {
                             startActivity(new Intent(MainActivity.this, Uzytkownik_MAIN.class));
+                            finish();
                         }
                     }
                 }

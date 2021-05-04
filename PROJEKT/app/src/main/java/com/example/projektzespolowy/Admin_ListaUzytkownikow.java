@@ -42,7 +42,7 @@ public class Admin_ListaUzytkownikow extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_uzytkownicy);
+        setContentView(R.layout.activity_admin_lista_uzytkownikow);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         ListView listView = findViewById(R.id.listViewListaUzytkownikow);
@@ -154,8 +154,8 @@ public class Admin_ListaUzytkownikow extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
                 startActivity(new Intent(Admin_ListaUzytkownikow.this, Admin_MAIN.class));
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);

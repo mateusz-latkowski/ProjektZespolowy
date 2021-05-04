@@ -111,8 +111,8 @@ public class Admin_DodawanieWycieczek extends AppCompatActivity {
         }
 
         Toast.makeText(this, "Wycieczka zostala zapisana!", Toast.LENGTH_SHORT).show();
-        finish();
         startActivity(new Intent(getApplicationContext(), Admin_MAIN.class));
+        finish();
     }
 
     private Object getExtension(Uri uri) {
@@ -139,8 +139,8 @@ public class Admin_DodawanieWycieczek extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
                 startActivity(new Intent(Admin_DodawanieWycieczek.this, Admin_MAIN.class));
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
