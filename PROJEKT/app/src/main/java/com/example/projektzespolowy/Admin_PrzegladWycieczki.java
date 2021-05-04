@@ -67,13 +67,15 @@ public class Admin_PrzegladWycieczki extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                miejsce.setText("Miejsce: " + Objects.requireNonNull(snapshot.child("Miejsce").getValue()).toString());
-                data.setText("Data: " + Objects.requireNonNull(snapshot.child("Data").getValue()).toString());
-                cena.setText("Cena: " + Objects.requireNonNull(snapshot.child("Cena").getValue()).toString() + " zl");
-                przewodnik.setText("Przewodnik: " + Objects.requireNonNull(snapshot.child("Przewodnik").getValue()).toString());
-                opis.setText("Opis: \n" + Objects.requireNonNull(snapshot.child("Opis").getValue()).toString());
+                if (snapshot.exists()) {
+                    miejsce.setText("Miejsce: " + Objects.requireNonNull(snapshot.child("Miejsce").getValue()).toString());
+                    data.setText("Data: " + Objects.requireNonNull(snapshot.child("Data").getValue()).toString());
+                    cena.setText("Cena: " + Objects.requireNonNull(snapshot.child("Cena").getValue()).toString() + " zl");
+                    przewodnik.setText("Przewodnik: " + Objects.requireNonNull(snapshot.child("Przewodnik").getValue()).toString());
+                    opis.setText("Opis: \n" + Objects.requireNonNull(snapshot.child("Opis").getValue()).toString());
 
-                Glide.with(getApplicationContext()).load(Objects.requireNonNull(snapshot.child("URL").getValue()).toString()).into(zdjecie);
+                    Glide.with(getApplicationContext()).load(Objects.requireNonNull(snapshot.child("URL").getValue()).toString()).into(zdjecie);
+                }
             }
 
             @Override
@@ -99,9 +101,11 @@ public class Admin_PrzegladWycieczki extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                edycjaCena.setText(Objects.requireNonNull(snapshot.child("Cena").getValue()).toString());
-                edycjaData.setText(Objects.requireNonNull(snapshot.child("Data").getValue()).toString());
-                edycjaPrzewodnik.setText(Objects.requireNonNull(snapshot.child("Przewodnik").getValue()).toString());
+                if (snapshot.exists()) {
+                    edycjaCena.setText(Objects.requireNonNull(snapshot.child("Cena").getValue()).toString());
+                    edycjaData.setText(Objects.requireNonNull(snapshot.child("Data").getValue()).toString());
+                    edycjaPrzewodnik.setText(Objects.requireNonNull(snapshot.child("Przewodnik").getValue()).toString());
+                }
             }
 
             @Override
@@ -132,7 +136,9 @@ public class Admin_PrzegladWycieczki extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                url = Objects.requireNonNull(snapshot.child("URL").getValue()).toString();
+                if (snapshot.exists()) {
+                    url = Objects.requireNonNull(snapshot.child("URL").getValue()).toString();
+                }
             }
 
             @Override
@@ -149,9 +155,10 @@ public class Admin_PrzegladWycieczki extends AppCompatActivity {
             StorageReference storageReference = firebaseStorage.getReferenceFromUrl(url);
 
             storageReference.delete().addOnSuccessListener(aVoid -> {
-                finish();
                 reference.removeValue();
-                startActivity(new Intent(getApplicationContext(), Admin_ListaWycieczek.class));
+                startActivity(new Intent(Admin_PrzegladWycieczki.this, Admin_MAIN.class));
+                finish();
+                Toast.makeText(this, "Wycieczka została usunięta!", Toast.LENGTH_SHORT).show();
             });
         });
 
@@ -162,8 +169,8 @@ public class Admin_PrzegladWycieczki extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
                 startActivity(new Intent(Admin_PrzegladWycieczki.this, Admin_ListaWycieczek.class));
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
