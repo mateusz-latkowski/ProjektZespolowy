@@ -46,4 +46,7 @@
     <string name="textViewBlokadaKonta">Blokada konta</string>
     <string name="buttonZmianaHasla">Zmień hasło</string>
 
+    <!--    Uzytkownik Home-->
+    <string name="buttonMojeWycieczki">Moje wycieczki</string>
+    <string name="buttonKonto">Moje konto</string>
 </resources>

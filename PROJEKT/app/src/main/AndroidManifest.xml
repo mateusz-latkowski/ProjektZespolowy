@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjektZespolowy">
+		<activity android:name=".Uzytkownik_Konto" />
         <activity android:name=".Uzytkownicy"></activity>
         <activity android:name=".PrzegladWycieczki" />
         <activity android:name=".Wycieczki" />
