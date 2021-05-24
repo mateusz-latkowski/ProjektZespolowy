@@ -108,5 +108,12 @@ public class Przewodnik_MAIN extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            Intent intent = new Intent(Przewodnik_MAIN.this, Przewodnik_ListaUczestnikow.class);
+            WycieczkaInfo wycieczkaInfo = (WycieczkaInfo) parent.getItemAtPosition(position);
+            intent.putExtra("ID", wycieczkaInfo.getID());
+            startActivity(intent);
+            finish();
+        });
     }
 }
