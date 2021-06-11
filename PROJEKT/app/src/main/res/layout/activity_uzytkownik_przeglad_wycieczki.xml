@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin_PrzegladWycieczki">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/textViewPrzegladMiejsceUzytkownik"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:layout_marginTop="25dp" />
+
+        <TextView
+            android:id="@+id/textViewPrzegladDataUzytkownik"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="25dp" />
+
+        <TextView
+            android:id="@+id/textViewPrzegladCenaUzytkownik"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="25dp" />
+
+        <TextView
+            android:id="@+id/textViewPrzegladPrzewodnikUzytkownik"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="25dp" />
+
+        <TextView
+            android:id="@+id/textViewPrzegladOpisUzytkownik"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="25dp" />
+
+        <ImageView
+            android:id="@+id/imageViewPrzegladZdjecieUzytkownik"
+            android:layout_width="411dp"
+            android:layout_height="248dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            app:srcCompat="@color/common_google_signin_btn_text_light_default" />
+
+        <Button
+            android:id="@+id/buttonRezerwuj"
+            android:layout_width="240dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_buttons"
+            android:text="@string/buttonRezerwacja"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp" />
+
+    </LinearLayout>
+
+</ScrollView>
