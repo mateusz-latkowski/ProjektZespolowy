@@ -50,8 +50,15 @@
     <string name="buttonMojeWycieczki">Moje wycieczki</string>
     <string name="buttonKonto">Moje konto</string>
 
+    <!--    Uzytkownik Przeglad Wycieczki -->
+    <string name="buttonRezerwacja">Zarezerwuj wycieczkę</string>
+    <string name="textViewKomunikatRezerwacja">Czy na pewno chcesz zarezerwować wycieczkę?</string>
+
     <!--    Uzytkownik Moje konto-->
     <string name="editTextKwota">Podaj kwotę</string>
     <string name="buttonWplac">Wpłać</string>
     <string name="buttonAnuluj">Anuluj rezerwację</string>
+
+    <!--    Przewodnik Main-->
+    <string name="buttonUczestnicy">Uczestnicy</string>
 </resources>
