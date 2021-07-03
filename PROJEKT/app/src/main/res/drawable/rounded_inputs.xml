@@ -7,7 +7,7 @@
 
     <stroke
         android:width="3dp"
-        android:color="#FF6200EE" />
+        android:color="#0ba4c7" />
     <!--        android:color="@color/colorInputTextBackground" />-->
 
     <corners android:radius="10dp"/>

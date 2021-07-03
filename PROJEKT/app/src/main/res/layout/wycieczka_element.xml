@@ -34,39 +34,39 @@
             android:id="@+id/textViewMiejsce"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:shadowColor="#000"
-            android:shadowRadius="1.0"
-            android:textColor="#666666"
-            android:textSize="17sp"
             android:layout_marginBottom="5dp"
+            android:ellipsize="end"
             android:maxLines="2"
             android:scrollHorizontally="true"
-            android:ellipsize="end"
-            android:text="@string/editTextMiejsce" />
+            android:shadowColor="#000"
+            android:shadowRadius="1.0"
+            android:text="@string/editTextMiejsce"
+            android:textColor="@color/purple_500"
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/textViewCena"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#777777"
-            android:textSize="16sp"
+            android:ellipsize="end"
             android:maxLines="2"
             android:minLines="2"
             android:scrollHorizontally="true"
-            android:ellipsize="end"
-            android:text="@string/editTextCena"/>
+            android:text="@string/editTextCena"
+            android:textColor="@color/purple_500"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/textViewData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#777777"
-            android:textSize="16sp"
+            android:ellipsize="end"
             android:maxLines="2"
             android:minLines="2"
             android:scrollHorizontally="true"
-            android:ellipsize="end"
-            android:text="@string/editTextData"/>
+            android:text="@string/editTextData"
+            android:textColor="@color/purple_500"
+            android:textSize="16sp" />
 
     </LinearLayout>
 </LinearLayout>

@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/tlo2"
     tools:context=".PrzypomnienieHasla">
 
-    <TextView
-        android:id="@+id/textViewResetPassword"
-        android:layout_width="320dp"
-        android:layout_height="170dp"
-        android:text="@string/textViewInfo"
-        android:textAlignment="center"
-        android:textSize="30sp"
+    <Button
+        android:id="@+id/buttonResetPassword"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_buttons"
+        android:text="@string/buttonReset"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.216" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextResetEmail"
+        app:layout_constraintVertical_bias="0.060000002" />
 
     <EditText
         android:id="@+id/editTextResetEmail"
@@ -35,20 +35,31 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewResetPassword"
-        app:layout_constraintVertical_bias="0.106"
+        app:layout_constraintVertical_bias="0.01999998"
         tools:ignore="LabelFor" />
 
-    <Button
-        android:id="@+id/buttonResetPassword"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_buttons"
-        android:text="@string/buttonReset"
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="140dp"
+        android:layout_height="124dp"
+        android:layout_marginBottom="76dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextResetEmail"
-        app:layout_constraintVertical_bias="0.312" />
+        app:srcCompat="@drawable/password" />
 
+    <TextView
+        android:id="@+id/textViewResetPassword"
+        android:layout_width="320dp"
+        android:layout_height="115dp"
+        android:text="@string/textViewInfo"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.110000014" />
 </androidx.constraintlayout.widget.ConstraintLayout>

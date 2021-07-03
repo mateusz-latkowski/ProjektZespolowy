@@ -4,18 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/tlo2"
     tools:context=".Przewodnik_MAIN">
-
-    <ListView
-        android:id="@+id/listViewListaWycieczekPrzewodnika"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonPrzewodnikWyloguj"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.967"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/buttonPrzewodnikWyloguj"
@@ -29,4 +19,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.961" />
+
+    <ListView
+        android:id="@+id/listViewListaWycieczekPrzewodnika"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPrzewodnikWyloguj"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.967"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

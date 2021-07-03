@@ -22,6 +22,21 @@ public class Uzytkownik_MAIN extends AppCompatActivity {
         Button buttonKonto = findViewById(R.id.buttonKonto);
         Button buttonWyloguj = findViewById(R.id.buttonWylogowanie);
 
+        buttonWycieczki.setOnClickListener(v -> {
+            startActivity(new Intent(Uzytkownik_MAIN.this, Uzytkownik_ListaWycieczek.class));
+            finish();
+        });
+
+        buttonMojeWycieczki.setOnClickListener(v -> {
+            startActivity(new Intent(Uzytkownik_MAIN.this, Uzytkownik_MojeWycieczki.class));
+            finish();
+        });
+
+        buttonKonto.setOnClickListener(v -> {
+            startActivity(new Intent(Uzytkownik_MAIN.this, Uzytkownik_Konto.class));
+            finish();
+        });
+
         buttonWyloguj.setOnClickListener(v -> {
             firebaseAuth.signOut();
             startActivity(new Intent(Uzytkownik_MAIN.this, MainActivity.class));

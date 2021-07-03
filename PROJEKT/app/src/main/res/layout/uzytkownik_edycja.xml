@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,21 +12,22 @@
         android:layout_marginTop="15dp"
         android:layout_height="wrap_content" >
 
-        <TextView
-            android:id="@+id/textViewStatusPrzewodnika"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:textSize="20sp"
-            android:text="@string/textViewPrzewodnik" />
-
         <Switch
             android:id="@+id/switchStatusPrzewodnika"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
+            android:background="@drawable/rounded_buttons"
             android:checked="false"
             tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <TextView
+            android:id="@+id/textViewStatusPrzewodnika"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/textViewPrzewodnik"
+            android:textSize="20sp" />
 
     </RelativeLayout>
 
@@ -34,21 +36,22 @@
         android:layout_marginTop="15dp"
         android:layout_height="wrap_content" >
 
-        <TextView
-            android:id="@+id/textViewStatusKonta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:textSize="20sp"
-            android:text="@string/textViewBlokadaKonta" />
-
         <Switch
             android:id="@+id/switchStatusKonta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
+            android:background="@drawable/rounded_buttons"
             android:checked="false"
             tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <TextView
+            android:id="@+id/textViewStatusKonta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/textViewBlokadaKonta"
+            android:textSize="20sp" />
 
     </RelativeLayout>
 
@@ -60,6 +63,14 @@
         android:layout_marginTop="15dp"
         android:layout_gravity="center"
         android:text="@string/buttonZmianaHasla" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="90px"
+        android:baselineAlignBottom="false"
+        app:srcCompat="@drawable/traveler" />
 
 
 </LinearLayout>

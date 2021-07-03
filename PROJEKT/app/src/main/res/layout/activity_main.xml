@@ -4,23 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/tlo2"
     tools:context=".MainActivity">
 
 
-    <EditText
-        android:id="@+id/editTextEmailLogin"
-        android:layout_width="320dp"
-        android:layout_height="45dp"
-        android:background="@drawable/rounded_inputs"
-        android:hint="@string/editTextMail"
-        android:importantForAutofill="no"
-        android:inputType="textEmailAddress"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="223dp"
+        android:layout_height="196dp"
+        android:layout_marginBottom="33dp"
+        android:rotationX="2"
+        android:rotationY="-8"
+        app:layout_constraintBottom_toTopOf="@+id/editTextEmailLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.358" />
+        app:srcCompat="@drawable/loogo"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/editTextPasswordLogin"
@@ -33,45 +32,63 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmailLogin"
-        app:layout_constraintVertical_bias="0.045" />
+        app:layout_constraintVertical_bias="0.054" />
+
+    <EditText
+        android:id="@+id/editTextEmailLogin"
+        android:layout_width="320dp"
+        android:layout_height="45dp"
+        android:background="@drawable/rounded_inputs"
+        android:hint="@string/editTextMail"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.479" />
 
     <Button
         android:id="@+id/buttonSignIn"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:text="@string/buttonLogin"
         android:background="@drawable/rounded_buttons"
+        android:text="@string/buttonLogin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPasswordLogin"
-        app:layout_constraintVertical_bias="0.081" />
-
-    <TextView
-        android:id="@+id/textViewSignIn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/textViewRejestracja"
-        android:textSize="17sp"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSignIn"
-        app:layout_constraintVertical_bias="0.124"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.112" />
 
     <TextView
         android:id="@+id/textViewRecoveryPass"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:text="@string/textViewPrzypomnienieHasla"
-        android:textSize="17sp"
         android:textAlignment="center"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSignIn"
-        app:layout_constraintVertical_bias="0.092"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.148"
+        tools:layout_editor_absoluteX="-8dp" />
+
+    <TextView
+        android:id="@+id/textViewSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/textViewRejestracja"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSignIn"
+        app:layout_constraintVertical_bias="0.174"
+        tools:layout_editor_absoluteX="-8dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
