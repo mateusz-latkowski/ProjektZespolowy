@@ -87,9 +87,9 @@ public class Przewodnik_MAIN extends AppCompatActivity {
 
                 WycieczkaInfo wycieczkaInfo = (WycieczkaInfo) model;
                 if (wycieczkaInfo.getPrzewodnik().equals(imie + " " + nazwisko)) {
-                    miejsce.setTextColor(Color.rgb(131, 200, 0));
-                    cena.setTextColor(Color.rgb(131, 200, 0));
-                    data.setTextColor(Color.rgb(131, 200, 0));
+//                    miejsce.setTextColor(Color.rgb(131, 200, 0));
+//                    cena.setTextColor(Color.rgb(131, 200, 0));
+//                    data.setTextColor(Color.rgb(131, 200, 0));
 
                     miejsce.setText("Miejsce: " + wycieczkaInfo.getMiejsce());
                     cena.setText("Cena: " + wycieczkaInfo.getCena() + " zl");

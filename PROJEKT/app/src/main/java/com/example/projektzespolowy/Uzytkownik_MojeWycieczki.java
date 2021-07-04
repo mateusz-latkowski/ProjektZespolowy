@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,7 +34,6 @@ public class Uzytkownik_MojeWycieczki extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uzytkownik_moje_wycieczki);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
@@ -53,6 +53,12 @@ public class Uzytkownik_MojeWycieczki extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+        });
+
+        Button Wstecz = findViewById(R.id.buttonWsteczMojeWycieczki);
+        Wstecz.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), Uzytkownik_MAIN.class));
+            finish();
         });
     }
 
@@ -92,20 +98,5 @@ public class Uzytkownik_MojeWycieczki extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                startActivity(new Intent(Uzytkownik_MojeWycieczki.this, Uzytkownik_MAIN.class));
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public boolean OnCreateOptionsMenu(Menu menu) {
-        return true;
     }
 }

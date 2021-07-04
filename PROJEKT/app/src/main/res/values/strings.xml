@@ -61,4 +61,6 @@
 
     <!--    Przewodnik Main-->
     <string name="buttonUczestnicy">Uczestnicy</string>
+
+    <string name="buttonWstecz">WSTECZ</string>
 </resources>

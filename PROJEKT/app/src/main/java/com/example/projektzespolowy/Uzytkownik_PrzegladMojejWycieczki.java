@@ -49,7 +49,6 @@ public class Uzytkownik_PrzegladMojejWycieczki extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uzytkownik_przeglad_mojej_wycieczki);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
@@ -65,6 +64,7 @@ public class Uzytkownik_PrzegladMojejWycieczki extends AppCompatActivity {
         opis = findViewById(R.id.textViewMojPrzegladOpisUzytkownik);
         zdjecie = findViewById(R.id.imageViewMojPrzegladZdjecieUzytkownik);
         Button anuluj = findViewById(R.id.buttonAnuluj);
+        Button wstecz = findViewById(R.id.buttonWsteczPrzegladMojejWycieczki);
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Uzytkownicy").child(userID).child("Wycieczki");
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -93,6 +93,11 @@ public class Uzytkownik_PrzegladMojejWycieczki extends AppCompatActivity {
         });
 
         anuluj.setOnClickListener(v -> anulowanieRezerwacji());
+
+        wstecz.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), Uzytkownik_MojeWycieczki.class));
+            finish();
+        });
     }
 
     private void anulowanieRezerwacji() {
@@ -103,20 +108,5 @@ public class Uzytkownik_PrzegladMojejWycieczki extends AppCompatActivity {
         Toast.makeText(this, "Wycieczka została anulowana!", Toast.LENGTH_SHORT).show();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Wycieczki").child(ID).child("Uczestnicy").child(userID);
         databaseReference.removeValue();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                startActivity(new Intent(Uzytkownik_PrzegladMojejWycieczki.this, Uzytkownik_MojeWycieczki.class));
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public boolean OnCreateOptionsMenu(Menu menu) {
-        return true;
     }
 }

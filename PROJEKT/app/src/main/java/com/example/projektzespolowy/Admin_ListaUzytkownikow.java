@@ -9,8 +9,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -43,7 +41,6 @@ public class Admin_ListaUzytkownikow extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_lista_uzytkownikow);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         ListView listView = findViewById(R.id.listViewListaUzytkownikow);
         haslo = findViewById(R.id.buttonZmianaHasla);
@@ -83,6 +80,12 @@ public class Admin_ListaUzytkownikow extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener((parent, view, position, id) -> edycjaUzytkownika(parent, position));
+
+        Button Wstecz = findViewById(R.id.buttonWsteczListaUzytkownikow);
+        Wstecz.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), Admin_MAIN.class));
+            finish();
+        });
     }
 
     private void edycjaUzytkownika(AdapterView<?> parent, int position) {
@@ -148,20 +151,5 @@ public class Admin_ListaUzytkownikow extends AppCompatActivity {
                 Toast.makeText(Admin_ListaUzytkownikow.this, "Link został wysłany!", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                startActivity(new Intent(Admin_ListaUzytkownikow.this, Admin_MAIN.class));
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public boolean OnCreateOptionsMenu(Menu menu) {
-        return true;
     }
 }

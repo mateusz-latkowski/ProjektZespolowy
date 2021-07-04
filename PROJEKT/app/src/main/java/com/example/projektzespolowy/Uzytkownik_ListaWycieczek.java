@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,7 +28,6 @@ public class Uzytkownik_ListaWycieczek extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uzytkownik_lista_wycieczek);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         ListView listView = findViewById(R.id.listViewListaWycieczekUzytkownika);
 
@@ -63,20 +63,11 @@ public class Uzytkownik_ListaWycieczek extends AppCompatActivity {
             wycieczka1.putExtra("ID", wycieczkaInfo.getID());
             startActivity(wycieczka1);
         });
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                startActivity(new Intent(Uzytkownik_ListaWycieczek.this, Uzytkownik_MAIN.class));
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public boolean OnCreateOptionsMenu(Menu menu) {
-        return true;
+        Button Wstecz = findViewById(R.id.buttonWsteczListaWycieczek);
+        Wstecz.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), Uzytkownik_MAIN.class));
+            finish();
+        });
     }
 }

@@ -1,7 +1,6 @@
 package com.example.projektzespolowy;
 
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,8 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,7 +23,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
-import java.util.Objects;
 import java.util.Random;
 
 public class Admin_DodawanieWycieczek extends AppCompatActivity {
@@ -46,7 +43,6 @@ public class Admin_DodawanieWycieczek extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_dodawanie_wycieczek);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         Miejsce = findViewById(R.id.editTextMiejsce);
         Cena = findViewById(R.id.editTextCena);
@@ -55,6 +51,7 @@ public class Admin_DodawanieWycieczek extends AppCompatActivity {
         Przewodnik = findViewById(R.id.editTextNazwiskoPrzewodnika);
         Button DodawanieZdjecia = findViewById(R.id.buttonDodajZdjecie);
         Button Zatwierdz = findViewById(R.id.buttonZatwierdzWycieczke);
+        Button Wstecz = findViewById(R.id.buttonWsteczDodawanieWycieczki);
 
         storageReference = FirebaseStorage.getInstance().getReference("Images");
 
@@ -66,6 +63,11 @@ public class Admin_DodawanieWycieczek extends AppCompatActivity {
             } else {
                 zapiszWyczieczke();
             }
+        });
+
+        Wstecz.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), Admin_MAIN.class));
+            finish();
         });
     }
 
@@ -133,20 +135,5 @@ public class Admin_DodawanieWycieczek extends AppCompatActivity {
         }
 
         return numerTransakcji.toString();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                startActivity(new Intent(Admin_DodawanieWycieczek.this, Admin_MAIN.class));
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public boolean OnCreateOptionsMenu(Menu menu) {
-        return true;
     }
 }

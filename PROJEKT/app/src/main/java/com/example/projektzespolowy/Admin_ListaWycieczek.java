@@ -1,14 +1,12 @@
 package com.example.projektzespolowy;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,7 +17,6 @@ import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import java.util.Objects;
 
 public class Admin_ListaWycieczek extends AppCompatActivity {
 
@@ -27,7 +24,6 @@ public class Admin_ListaWycieczek extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_lista_wycieczek);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         ListView listView = findViewById(R.id.listViewListaWycieczek);
 
@@ -64,20 +60,11 @@ public class Admin_ListaWycieczek extends AppCompatActivity {
             wycieczka1.putExtra("ID", wycieczkaInfo.getID());
             startActivity(wycieczka1);
         });
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                startActivity(new Intent(Admin_ListaWycieczek.this, Admin_MAIN.class));
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public boolean OnCreateOptionsMenu(Menu menu) {
-        return true;
+        Button Wstecz = findViewById(R.id.buttonWsteczListaWycieczek);
+        Wstecz.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), Admin_MAIN.class));
+            finish();
+        });
     }
 }

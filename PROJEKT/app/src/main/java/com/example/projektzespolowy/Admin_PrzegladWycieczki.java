@@ -8,8 +8,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +25,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.Objects;
+
+import static java.util.Objects.*;
 
 public class Admin_PrzegladWycieczki extends AppCompatActivity {
 
@@ -49,7 +49,6 @@ public class Admin_PrzegladWycieczki extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_przeglad_wycieczki);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         String ID = getIntent().getExtras().get("ID").toString();
 
@@ -61,6 +60,7 @@ public class Admin_PrzegladWycieczki extends AppCompatActivity {
         zdjecie = findViewById(R.id.imageViewPrzegladZdjecie);
         Button edycja = findViewById(R.id.buttonEdytuj);
         Button usuwanie = findViewById(R.id.buttonUsun);
+        Button wstecz = findViewById(R.id.buttonWsteczPrzegladWycieczki);
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Wycieczki").child(ID);
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -68,13 +68,13 @@ public class Admin_PrzegladWycieczki extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    miejsce.setText("Miejsce: " + Objects.requireNonNull(snapshot.child("Miejsce").getValue()).toString());
-                    data.setText("Data: " + Objects.requireNonNull(snapshot.child("Data").getValue()).toString());
-                    cena.setText("Cena: " + Objects.requireNonNull(snapshot.child("Cena").getValue()).toString() + " zl");
-                    przewodnik.setText("Przewodnik: " + Objects.requireNonNull(snapshot.child("Przewodnik").getValue()).toString());
-                    opis.setText("Opis: \n" + Objects.requireNonNull(snapshot.child("Opis").getValue()).toString());
+                    miejsce.setText("Miejsce: " + requireNonNull(snapshot.child("Miejsce").getValue()).toString());
+                    data.setText("Data: " + requireNonNull(snapshot.child("Data").getValue()).toString());
+                    cena.setText("Cena: " + requireNonNull(snapshot.child("Cena").getValue()).toString() + " zl");
+                    przewodnik.setText("Przewodnik: " + requireNonNull(snapshot.child("Przewodnik").getValue()).toString());
+                    opis.setText("Opis: \n" + requireNonNull(snapshot.child("Opis").getValue()).toString());
 
-                    Glide.with(getApplicationContext()).load(Objects.requireNonNull(snapshot.child("URL").getValue()).toString()).into(zdjecie);
+                    Glide.with(getApplicationContext()).load(requireNonNull(snapshot.child("URL").getValue()).toString()).into(zdjecie);
                 }
             }
 
@@ -87,6 +87,14 @@ public class Admin_PrzegladWycieczki extends AppCompatActivity {
         edycja.setOnClickListener(v -> edytujWycieczke(databaseReference));
 
         usuwanie.setOnClickListener(v -> usunWycieczke(databaseReference));
+
+        wstecz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), Admin_ListaWycieczek.class));
+                finish();
+            }
+        });
     }
 
     private void edytujWycieczke(final DatabaseReference reference) {
@@ -102,9 +110,9 @@ public class Admin_PrzegladWycieczki extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    edycjaCena.setText(Objects.requireNonNull(snapshot.child("Cena").getValue()).toString());
-                    edycjaData.setText(Objects.requireNonNull(snapshot.child("Data").getValue()).toString());
-                    edycjaPrzewodnik.setText(Objects.requireNonNull(snapshot.child("Przewodnik").getValue()).toString());
+                    edycjaCena.setText(requireNonNull(snapshot.child("Cena").getValue()).toString());
+                    edycjaData.setText(requireNonNull(snapshot.child("Data").getValue()).toString());
+                    edycjaPrzewodnik.setText(requireNonNull(snapshot.child("Przewodnik").getValue()).toString());
                 }
             }
 
@@ -163,20 +171,5 @@ public class Admin_PrzegladWycieczki extends AppCompatActivity {
         });
 
         builder.create().show();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                startActivity(new Intent(Admin_PrzegladWycieczki.this, Admin_ListaWycieczek.class));
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public boolean OnCreateOptionsMenu(Menu menu) {
-        return true;
     }
 }

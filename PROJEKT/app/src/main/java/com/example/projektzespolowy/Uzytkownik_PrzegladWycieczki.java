@@ -60,7 +60,6 @@ public class Uzytkownik_PrzegladWycieczki extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uzytkownik_przeglad_wycieczki);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         firebaseUser = firebaseAuth.getCurrentUser();
         assert firebaseUser != null;
@@ -75,6 +74,7 @@ public class Uzytkownik_PrzegladWycieczki extends AppCompatActivity {
         opis = findViewById(R.id.textViewPrzegladOpisUzytkownik);
         zdjecie = findViewById(R.id.imageViewPrzegladZdjecieUzytkownik);
         Button rezerwacja = findViewById(R.id.buttonRezerwuj);
+        Button wstecz = findViewById(R.id.buttonWsteczPrzegladWycieczki);
 
         databaseReference.child("Wycieczki").child(ID).addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
@@ -100,6 +100,10 @@ public class Uzytkownik_PrzegladWycieczki extends AppCompatActivity {
         });
 
         rezerwacja.setOnClickListener(v -> rezerwujWycieczke());
+        wstecz.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), Uzytkownik_ListaWycieczek.class));
+            finish();
+        });
     }
 
     private void rezerwujWycieczke() {
@@ -176,20 +180,5 @@ public class Uzytkownik_PrzegladWycieczki extends AppCompatActivity {
         }
 
         return numerTransakcji.toString();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                startActivity(new Intent(Uzytkownik_PrzegladWycieczki.this, Uzytkownik_ListaWycieczek.class));
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public boolean OnCreateOptionsMenu(Menu menu) {
-        return true;
     }
 }

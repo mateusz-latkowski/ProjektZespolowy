@@ -40,36 +40,47 @@
         <TextView
             android:id="@+id/textViewPrzegladOpis"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="50dp"
             android:layout_marginTop="25dp" />
 
         <ImageView
             android:id="@+id/imageViewPrzegladZdjecie"
-            android:layout_width="411dp"
-            android:layout_height="248dp"
+            android:layout_width="400dp"
+            android:layout_height="200dp"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="25dp"
             app:srcCompat="@color/common_google_signin_btn_text_light_default" />
 
         <Button
             android:id="@+id/buttonEdytuj"
-            android:layout_width="240dp"
+            android:layout_width="190dp"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_buttons"
             android:text="@string/buttonEdycja"
-            android:layout_marginTop="25dp" />
+            android:layout_marginTop="10dp" />
 
         <Button
             android:id="@+id/buttonUsun"
-            android:layout_width="240dp"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/rounded_buttons"
             android:text="@string/buttonUsun"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="25dp"
+            android:layout_marginTop="10dp"
+        />
+
+        <Button
+            android:id="@+id/buttonWsteczPrzegladWycieczki"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_buttons"
+            android:text="@string/buttonWstecz"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             />
+
 
 
     </LinearLayout>

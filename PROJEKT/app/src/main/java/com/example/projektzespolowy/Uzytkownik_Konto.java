@@ -39,11 +39,11 @@ public class Uzytkownik_Konto extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uzytkownik_konto);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         TextView konto = findViewById(R.id.textViewStanKonta);
         kwota = findViewById(R.id.editTextKwota);
         Button wplac = findViewById(R.id.buttonWplac);
+        Button Wstecz = findViewById(R.id.buttonWsteczKonto);
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
@@ -70,6 +70,11 @@ public class Uzytkownik_Konto extends AppCompatActivity {
             } else {
                 wplacKwote(databaseReference);
             }
+        });
+
+        Wstecz.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), Uzytkownik_MAIN.class));
+            finish();
         });
     }
 
@@ -115,20 +120,5 @@ public class Uzytkownik_Konto extends AppCompatActivity {
             i++;
         }
         return numerTransakcji.toString();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                startActivity(new Intent(Uzytkownik_Konto.this, Uzytkownik_MAIN.class));
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public boolean OnCreateOptionsMenu(Menu menu) {
-        return true;
     }
 }
